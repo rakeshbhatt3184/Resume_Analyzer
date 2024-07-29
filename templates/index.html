@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Analyzer</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+            color: #333;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .btn-custom {
+            background-color: #6a11cb;
+            border-color: #6a11cb;
+            color: white;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: #2575fc;
+            border-color: #2575fc;
+            transform: translateY(-3px);
+        }
+        .text-center {
+            color: #333;
+        }
+        textarea {
+            height: 500px; /* Increased height */
+            width: 100%; /* Full width */
+            border: 2px solid #ddd; /* Border to make it box-like */
+            border-radius: 10px; /* Rounded corners */
+            padding: 10px; /* Padding inside the textarea */
+            box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+        }
+        .badge-custom {
+            font-size: 1.25em;
+            padding: 10px 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Resume Analyzer</h1>
+        <form action="/predict" method="post">
+            <div class="form-group mb-3">
+                <label for="resume" class="form-label">Paste your resume here:</label>
+                <textarea class="form-control" id="resume" name="resume" rows="10"></textarea>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">Analyze Resume</button>
+        </form>
+        {% if category %}
+            <div class="result mt-4">
+                <h2>Predicted Category: <span class="badge-custom">{{ category }}</span></h2>
+            </div>
+        {% endif %}
+        {% if sentiment_label %}
+            <div class="result mt-4">
+                <h2>Sentiment: <span class="badge-custom">{{ sentiment_label }}</span> ({{ sentiment_score }})</h2>
+            </div>
+        {% endif %}
+    </div>
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>
