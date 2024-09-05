@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import spacy
 from textblob import TextBlob
+import pandas as pd
 
 # Load the models and vectorizer
 clf = joblib.load('clf.pkl')
